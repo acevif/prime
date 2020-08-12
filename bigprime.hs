@@ -27,8 +27,8 @@ main = do
 --    putStrLn $ show $ primesToUA 1
     putStrLn $ show $ map experiment [1..10]
 
-experiment :: Int -> Bool
-experiment x = isPrime $ constructBigPrime $ firstNPrimes x
+-- experiment :: Int -> (Int, Bool)
+experiment x = ((isPrime $ constructBigPrime $ firstNPrimes x), (constructBigPrime $ firstNPrimes x))
 
 constructBigPrime :: [Int] -> Int
 constructBigPrime primes = (foldr (*) 1 primes) + 1
