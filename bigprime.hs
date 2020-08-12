@@ -22,12 +22,18 @@ sieveUA top = runSTUArray $ do
 primesToUA :: Int -> [Int]
 primesToUA top = 2 : [i*2+1 | (i,True) <- assocs $ sieveUA top]
 
-
-
 main :: IO ()
 main = do
-    -- putStrLn "Hello, World!"
+--    putStrLn $ show $ [1..10]
+    putStrLn $ show $ primesToUA 1
+    putStrLn $ show $ map experiment [1..10]
 
-    -- putStrLn $ show (1 + 2)
-    putStrLn $ show (primesToUA 100)
-    -- putStrLn "Hello, World!"
+experiment :: Int -> Int
+experiment x = constructBigPrime $ firstNPrimes x
+
+constructBigPrime :: [Int] -> Int
+constructBigPrime primes = (foldr (*) 1 primes) + 1
+
+firstNPrimes :: Int -> [Int]
+firstNPrimes x = take x $ primesToUA 100
+
